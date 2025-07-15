@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
+
 import One from './assets/images/1_on_dice.png';
 import Two from './assets/images/2_on_dice.png';
 import Three from './assets/images/3_on_dice.png';
@@ -18,6 +20,11 @@ import Six from './assets/images/6_on_dice.png';
 type DiceProps = PropsWithChildren<{
   imageURL: ImageSourcePropType;
 }>;
+
+const options = {
+  enableVibrateFallback: true,
+  ignoreAndroidSystemSettings: false,
+};
 
 const Dice = ({ imageURL }: DiceProps) => {
   return (
@@ -61,6 +68,7 @@ const App = () => {
       default:
         break;
     }
+    ReactNativeHapticFeedback.trigger('impactHeavy', options);
   };
   return (
     <View style={styles.container}>
